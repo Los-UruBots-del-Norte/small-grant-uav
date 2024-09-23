@@ -3,8 +3,7 @@
 ### Requirements
 - Ubuntu 20 or 22
 - Docker
-- Docker-compose 1.29.2 - Follow this guide [https://medium.com/@jared.ratner2/setting-up-docker-and-docker-compose-with-nvidia-gpu-support-on-linux-716db95c0f7c]
-- X11
+- Docker-compose 1.29.2 - [Follow this guide](https://medium.com/@jared.ratner2/setting-up-docker-and-docker-compose-with-nvidia-gpu-support-on-linux-716db95c0f7c)
 - NVIDA Drivers to run with gpu - Non necessary
 
 ### X11 
