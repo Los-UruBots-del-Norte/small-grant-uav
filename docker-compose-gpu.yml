@@ -1,0 +1,36 @@
+services:
+  small-grants-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: simulation-gpu
+    network_mode: host
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+      - /etc/localtime:/etc/localtime:ro
+      - /dev/:/dev/
+    environment:
+      - DISPLAY=$DISPLAY
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - color_prompt=yes
+      - TERM
+      - QT_X11_NO_MITSHM=1
+      - DRI_NAME=card1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - __NV_PRIME_RENDER_OFFLOAD=1
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+    command: bash -c 'tail -f /dev/null'
+    # command: bash -c 'source /home/humble/ros_ws/install/setup.bash && ros2 launch limo_description gazebo_models_diff.launch.py'
+    # tty: true
+    # stdin_open: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # runtime: nvidia
+

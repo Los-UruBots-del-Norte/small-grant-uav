@@ -1,0 +1,21 @@
+services:
+  small-grants:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: simulation
+    network_mode: host
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+      - /etc/localtime:/etc/localtime:ro
+      - /dev/:/dev/
+    environment:
+      - DISPLAY=$DISPLAY
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - color_prompt=yes
+      - QT_X11_NO_MITSHM=1
+    command: bash -c 'tail -f /dev/null'
+    # command: bash -c 'source /home/humble/ros_ws/install/setup.bash && ros2 launch limo_description gazebo_models_diff.launch.py'
+
+
